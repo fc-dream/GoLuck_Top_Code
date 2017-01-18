@@ -1,2 +1,2 @@
 # Goluck_Top_Code
-goluck.top Blog Codes 
+[goluck.top]( http://www.goluck.top) Blog Codes 
