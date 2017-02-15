@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_data"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="top.goluck.realm_2017_2_8.ui.AddDataActivity">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"/>
+
+    <CheckBox
+        android:id="@+id/check1"
+        android:layout_below="@id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="男"/>
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_below="@id/check1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除"/>
+
+</RelativeLayout>
