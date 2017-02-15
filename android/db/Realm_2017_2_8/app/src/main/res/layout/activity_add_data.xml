@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="top.goluck.realm_2017_2_8.ui.AddDataActivity">
+
+    <TextView
+        android:id="@+id/add_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请填写你要添加的数据"/>
+
+    <EditText
+        android:id="@+id/add_edit1"
+        android:layout_below="@id/add_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入用户名"/>
+
+    <TextView
+        android:id="@+id/add_text1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/add_edit1"
+        android:background="#f23f00"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="同步添加"/>
+
+    <TextView
+        android:id="@+id/add_text2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/add_text1"
+        android:background="#f23f00"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="异步添加"/>
+
+</RelativeLayout>
