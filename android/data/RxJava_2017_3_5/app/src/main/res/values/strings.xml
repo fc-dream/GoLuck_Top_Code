@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RxJava_2017_3_5</string>
+    <string name="main_create">创建操作</string>
+    <string name="main_create_test">创建操作Log测试</string>
+    <string name="main_change">变换操作</string>
+    <string name="main_change_test">变换操作Log测试</string>
+    <string name="main_filter">过滤操作</string>
+    <string name="main_filter_test">过滤操作Log测试</string>
+</resources>
