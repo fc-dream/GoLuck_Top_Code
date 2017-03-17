@@ -2,7 +2,6 @@ package top.goluck.rxjava_2017_3_5.function;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -52,7 +51,10 @@ public class RxJavaTransformActivity extends BaseActivity {
         });
         LogListString("map后的数据", mObservable1);
         //rx.exceptions.MissingBackpressureException  告诉我们，生产者太快了，我们的操作函数无法处理这种情况。  http://blog.chengyunfeng.com/?p=981
-        mObservable1.buffer(100, TimeUnit.MILLISECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("map"));
+        // 方案1 .onBackpressureBuffer()  加缓冲
+        // 方案2 .buffer(100, TimeUnit.MILLISECONDS) 当消费者忙的时候可以使用 buffer 和 window 操作函数来收集数据。如果批量处理数据速度比较快
+        // 方案3 ..sample(100, TimeUnit.MILLISECONDS) sample 操作函数可以指定生产者发射数据的最大速度，多余的数据被丢弃了。 throttle 和 Debounce 也能实现类似的效果。
+        mObservable1.onBackpressureBuffer().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("map"));
 
         //flatMap
         Observable<String> mObservable2 = mObservable.toList().flatMap(new Func1<List<Integer>, Observable<String>>() {
