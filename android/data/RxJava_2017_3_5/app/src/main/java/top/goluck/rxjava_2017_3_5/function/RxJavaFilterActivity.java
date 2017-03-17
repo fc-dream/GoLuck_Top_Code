@@ -1,5 +1,7 @@
 package top.goluck.rxjava_2017_3_5.function;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -51,7 +53,7 @@ public class RxJavaFilterActivity extends BaseActivity {
         });
         LogList("filter后的数据",mObservable1);
         //rx.exceptions.MissingBackpressureException  告诉我们，生产者太快了，我们的操作函数无法处理这种情况。  http://blog.chengyunfeng.com/?p=981
-        mObservable1.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("filter"));
+        mObservable1.buffer(100, TimeUnit.MILLISECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("filter"));
 
         //takeLast
         Observable<Integer> mObservable2 = mObservable.takeLast(25);
