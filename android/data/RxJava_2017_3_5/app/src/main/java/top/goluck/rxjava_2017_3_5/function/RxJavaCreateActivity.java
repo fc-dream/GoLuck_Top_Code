@@ -89,7 +89,7 @@ public class RxJavaCreateActivity extends BaseActivity {
         Observable stringObservable7 = Observable.range(1,5);
         stringObservable7.observeOn(Schedulers.newThread()).subscribe(getSubscriber("defer"));
 
-        //defer
+        //interval
         Observable stringObservable8 = Observable.interval(1,TimeUnit.MINUTES);
         stringObservable8.observeOn(Schedulers.newThread()).subscribe(getSubscriber("defer"));
     }

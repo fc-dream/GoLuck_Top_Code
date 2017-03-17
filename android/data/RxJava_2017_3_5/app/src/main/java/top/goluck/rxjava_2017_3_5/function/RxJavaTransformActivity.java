@@ -49,6 +49,7 @@ public class RxJavaTransformActivity extends BaseActivity {
             }
         });
         LogListString("map后的数据", mObservable1);
+        //rx.exceptions.MissingBackpressureException  告诉我们，生产者太快了，我们的操作函数无法处理这种情况。  http://blog.chengyunfeng.com/?p=981
         mObservable1.observeOn(Schedulers.newThread()).subscribe(getSubscriber("map"));
 
         //flatMap
