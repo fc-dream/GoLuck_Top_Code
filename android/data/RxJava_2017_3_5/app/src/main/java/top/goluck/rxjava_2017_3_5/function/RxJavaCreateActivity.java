@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func0;
 import rx.functions.Func1;
@@ -33,12 +34,12 @@ public class RxJavaCreateActivity extends BaseActivity {
         //just
         String str = "T1";
         Observable<String> stringObservable1 = Observable.just(str);
-        stringObservable1.observeOn(Schedulers.newThread()).subscribe(getSubscriber("just"));
+        stringObservable1.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("just"));
 
         //from
         String[] strs = {"1","T2","T33"};
         Observable<String> stringObservable2 = Observable.from(strs);
-        stringObservable2.observeOn(Schedulers.newThread()).subscribe(getSubscriber("from"));
+        stringObservable2.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("from"));
 
         //create
         final Observable<String> stringObservable3 = Observable.create(new Observable.OnSubscribe<String>() {
@@ -48,7 +49,7 @@ public class RxJavaCreateActivity extends BaseActivity {
                 subscriber.onCompleted();
             }
         });
-        stringObservable3.observeOn(Schedulers.newThread()).subscribe(getSubscriber("create"));
+        stringObservable3.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("create"));
 
 
         //repeat  死循环
@@ -56,7 +57,7 @@ public class RxJavaCreateActivity extends BaseActivity {
         Observable<String> stringObservable4_ = Observable.just(str4_);
         Observable<String> stringObservable4 = stringObservable4_.repeat();
         final Subscriber mSubscriber = getSubscriber("repeat");
-        stringObservable4.observeOn(Schedulers.newThread()).subscribe(mSubscriber);
+        stringObservable4.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(mSubscriber);
         Observable.timer(10,TimeUnit.MICROSECONDS).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
@@ -73,7 +74,7 @@ public class RxJavaCreateActivity extends BaseActivity {
                 return Observable.timer(30, TimeUnit.SECONDS);
             }
         });
-        stringObservable5.observeOn(Schedulers.newThread()).subscribe(getSubscriber("repeatWhen"));
+        stringObservable5.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("repeatWhen"));
 
         //defer
         Observable stringObservable6 = Observable.defer(new Func0<Observable<String>>(){
@@ -83,14 +84,14 @@ public class RxJavaCreateActivity extends BaseActivity {
                 return Observable.just("T1");
             }
         });
-        stringObservable6.observeOn(Schedulers.newThread()).subscribe(getSubscriber("defer"));
+        stringObservable6.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("defer"));
 
         //range
         Observable stringObservable7 = Observable.range(1,5);
-        stringObservable7.observeOn(Schedulers.newThread()).subscribe(getSubscriber("defer"));
+        stringObservable7.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("defer"));
 
-        //defer
+        //interval
         Observable stringObservable8 = Observable.interval(1,TimeUnit.MINUTES);
-        stringObservable8.observeOn(Schedulers.newThread()).subscribe(getSubscriber("defer"));
+        stringObservable8.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("defer"));
     }
 }

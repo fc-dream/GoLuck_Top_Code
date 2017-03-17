@@ -2,6 +2,7 @@ package top.goluck.rxjava_2017_3_5.function;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import top.goluck.rxjava_2017_3_5.R;
@@ -49,23 +50,24 @@ public class RxJavaFilterActivity extends BaseActivity {
             }
         });
         LogList("filter后的数据",mObservable1);
-        mObservable1.observeOn(Schedulers.newThread()).subscribe(getSubscriber("filter"));
+        //rx.exceptions.MissingBackpressureException  告诉我们，生产者太快了，我们的操作函数无法处理这种情况。  http://blog.chengyunfeng.com/?p=981
+        mObservable1.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("filter"));
 
         //takeLast
         Observable<Integer> mObservable2 = mObservable.takeLast(25);
         LogList("takeLast后的数据",mObservable2);
-        mObservable2.observeOn(Schedulers.newThread()).subscribe(getSubscriber("takeLast"));
+        mObservable2.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("takeLast"));
 
         //last
         Observable<Integer> mObservable3 = mObservable.last();
         LogList("last后的数据",mObservable3);
-        mObservable3.observeOn(Schedulers.newThread()).subscribe(getSubscriber("last"));
+        mObservable3.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("last"));
 
         //lastOrDefault
         Observable<Integer> mObservable4 = mObservable.lastOrDefault(-100);
         LogList("lastOrDefault后的数据",mObservable4);
 
 
-        mObservable4.observeOn(Schedulers.newThread()).subscribe(getSubscriber("lastOrDefault"));
+        mObservable4.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("lastOrDefault"));
     }
 }

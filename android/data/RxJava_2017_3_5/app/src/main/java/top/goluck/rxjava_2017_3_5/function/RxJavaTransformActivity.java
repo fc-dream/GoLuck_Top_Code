@@ -5,6 +5,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import top.goluck.rxjava_2017_3_5.R;
@@ -49,7 +50,8 @@ public class RxJavaTransformActivity extends BaseActivity {
             }
         });
         LogListString("map后的数据", mObservable1);
-        mObservable1.observeOn(Schedulers.newThread()).subscribe(getSubscriber("map"));
+        //rx.exceptions.MissingBackpressureException  告诉我们，生产者太快了，我们的操作函数无法处理这种情况。  http://blog.chengyunfeng.com/?p=981
+        mObservable1.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("map"));
 
         //flatMap
         Observable<String> mObservable2 = mObservable.toList().flatMap(new Func1<List<Integer>, Observable<String>>() {
@@ -63,7 +65,7 @@ public class RxJavaTransformActivity extends BaseActivity {
             }
         });
         LogListString("flatMap后的数据", mObservable2);
-        mObservable2.observeOn(Schedulers.newThread()).subscribe(getSubscriber("flatMap"));
+        mObservable2.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(getSubscriber("flatMap"));
 
 
     }
