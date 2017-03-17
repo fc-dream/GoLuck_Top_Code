@@ -70,6 +70,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             mSubscribers = new ArrayList<>();
         }
         Subscriber mSubscriber = new Subscriber<Object>() {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+            }
+
             @Override
             public void onCompleted() {
                 Log("---------------" + type + "-onCompleted");
