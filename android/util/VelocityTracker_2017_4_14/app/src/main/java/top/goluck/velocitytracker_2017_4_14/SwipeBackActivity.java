@@ -103,6 +103,7 @@ public class SwipeBackActivity extends AppCompatActivity {
                     if (mIsMoving) {
                         handleView((int) ev.getRawX());
                         handleBackgroundColor(ev.getRawX());
+                        return true;
                     }
                 }
                 break;
