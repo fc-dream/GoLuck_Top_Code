@@ -62,25 +62,21 @@ public class MainActivity extends AppCompatActivity implements GravitySnapHelper
         switch (item.getItemId()) {
             case R.id.horizontal_left:
                 main_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-                main_recyclerview.addItemDecoration(new MainDecoration(this, HORIZONTAL_LIST));
                 main_recyclerview.setOnFlingListener(null);
                 mSnapHelper = new GravitySnapHelper(Gravity.START, false, this);
                 break;
             case R.id.horizontal_center:
                 main_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-                main_recyclerview.addItemDecoration(new MainDecoration(this, HORIZONTAL_LIST));
                 main_recyclerview.setOnFlingListener(null);
                 mSnapHelper = new LinearSnapHelper();
                 break;
             case R.id.horizontal_right:
                 main_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-                main_recyclerview.addItemDecoration(new MainDecoration(this, HORIZONTAL_LIST));
                 main_recyclerview.setOnFlingListener(null);
                 mSnapHelper = new GravitySnapHelper(Gravity.END, false, this);
                 break;
             case R.id.vertical_top:
                 main_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                main_recyclerview.addItemDecoration(new MainDecoration(this, VERTICAL_LIST));
                 main_recyclerview.setOnFlingListener(null);
                 mSnapHelper = new GravitySnapHelper(Gravity.TOP, false, this);
                 break;
@@ -91,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements GravitySnapHelper
                 break;
             case R.id.vertical_bottom:
                 main_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                main_recyclerview.addItemDecoration(new MainDecoration(this, VERTICAL_LIST));
                 main_recyclerview.setOnFlingListener(null);
                 mSnapHelper = new GravitySnapHelper(Gravity.BOTTOM, true, this);
                 break;
