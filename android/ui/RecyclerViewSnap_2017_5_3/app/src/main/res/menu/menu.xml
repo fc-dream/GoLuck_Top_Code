@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="top.goluck.recyclerviewsnap_2017_5_3.MainActivity">
+    <item
+        android:id="@+id/horizontal"
+        android:icon="@mipmap/ic_launcher"
+        android:title="水平">
+        <menu>
+            <item
+                android:id="@+id/horizontal_left"
+                android:title="靠左" />
+            <item
+                android:id="@+id/horizontal_center"
+                android:title="居中" />
+            <item
+                android:id="@+id/horizontal_right"
+                android:title="靠右" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/vertical"
+        android:icon="@mipmap/ic_launcher"
+        android:title="垂直">
+        <menu>
+            <item
+                android:id="@+id/vertical_top"
+                android:title="靠上" />
+            <item
+                android:id="@+id/vertical_center"
+                android:title="居中" />
+            <item
+                android:id="@+id/vertical_bottom"
+                android:title="靠下" />
+        </menu>
+    </item>
+</menu>

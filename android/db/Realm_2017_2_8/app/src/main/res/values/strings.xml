@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Realm_2017_2_8</string>
+    <string name="title_activity_add_data">增</string>
+    <string name="title_activity_del_data">删</string>
+    <string name="title_activity_select_data">查</string>
+    <string name="title_activity_update_data">改</string>
+    <string name="title_activity_json_to_realmobject">使用gson解析数据成RealmObject对象</string>
+    <string name="json_to_realmobject_text2">[{\"userName\":\"Luck1\"},{\"userName\":\"Luck2\"},{\"userName\":\"Jason1\"},{\"userName\":\"Joke1\"},{\"userName\":\"Saris\"}]</string>
+    <string name="json_to_realmobject_text3">解析之后的RealmObject对象（这里直接打印的对象属性值）：</string>
+    <string name="json_to_realmobject_text1">解析之前的json数据：</string>
+    <string name="json_to_realmobject_initview1">第%d个对象的UserName：</string>
+</resources>
