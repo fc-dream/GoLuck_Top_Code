@@ -3,13 +3,12 @@ package top.goluck.velocitytracker_2017_4_14;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -49,7 +48,7 @@ public class SwipeBackActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setBackgroundDrawableResource(R.drawable.xml_seat_shape);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
         mEvaluator = new ArgbEvaluator();
         mDecorView = getWindow().getDecorView();
         DisplayMetrics dm = new DisplayMetrics();
@@ -76,27 +75,21 @@ public class SwipeBackActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        addMovement(ev);
         if (mAnimator.isRunning()) {
             return true;
         }
-        addMovement(ev);
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startX = (int) ev.getRawX();
                 startY = (int) ev.getRawY();
-                if (startX < mTouchDistance) {//满足触发左右滑动
-                    return true;
-                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(startX < mTouchDistance) {//满足触发左右滑动条件
                     if (!mIsMoving) {
                         float dx = Math.abs(ev.getRawX() - startX);//移动的x距离
                         float dy = Math.abs(ev.getRawY() - startY);//移动的y距离
-//                        if(dx > mTouchSlop){//用户滑动是否有滚动的行为
-//                            mIsMoving = true;
-//                        }
-                        if (dx > dy ) {//1，只有x滑动距离大于y滑动距离，才满足处理条件
+                        if (dx > dy && dx > mTouchSlop ) {//1，只有x滑动距离大于y滑动距离，才满足处理条件
                             mIsMoving = true;
                         }
                     }
@@ -114,8 +107,7 @@ public class SwipeBackActivity extends AppCompatActivity {
                     mVelTracker.computeCurrentVelocity(1000);
                     //获取x方向上的速度
                     float velocityX = mVelTracker.getXVelocity();
-                    Log.i("tag", "-----------------------------velocityX=" + velocityX);
-                    if (mIsMoving && Math.abs(mDecorView.getScrollX()) >= 0) {//mDecorView.getTranslationX()
+                    if (mIsMoving && Math.abs(mDecorView.getScrollX()) >= 0) {
                         if (velocityX > 1000f || distance >= mDecorViewWidth / 2) {
                             mAnimator.setIntValues((int) ev.getRawX(), mDecorViewWidth);
                         } else {
@@ -138,7 +130,6 @@ public class SwipeBackActivity extends AppCompatActivity {
      * @param x
      */
     public void handleView(int x) {
-//      mDecorView.setTranslationX(x);
         mDecorView.scrollTo(-x, 0);
     }
 
@@ -149,8 +140,7 @@ public class SwipeBackActivity extends AppCompatActivity {
     private void handleBackgroundColor(float x) {
         int colorValue = (int) mEvaluator.evaluate(x / mDecorViewWidth,
                 Color.parseColor("#dd000000"), Color.parseColor("#00000000"));
-//      mDecorView.setBackgroundColor(colorValue);
-        mDecorView.getBackground().setColorFilter(colorValue, PorterDuff.Mode.SRC_OVER);
+        mDecorView.setBackgroundDrawable(new ColorDrawable(colorValue));
     }
 
     private VelocityTracker mVelTracker;
