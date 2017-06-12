@@ -18,4 +18,17 @@ public class MainActivity extends AppCompatActivity {
         return "我是onTest返回的值";
     }
 
+    @Aop
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtil.i(false,"我是在被注入自定义Pointcuts中的方法执行的onResume");
+    }
+
+    @Aop
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LogUtil.i(false,"我是在被注入自定义Pointcuts中的方法执行的onStop");
+    }
 }

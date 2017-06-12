@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
 /**
@@ -24,7 +25,7 @@ public class AspectJTest {
     public void onActivityMethodBefore(JoinPoint joinPoint) throws Throwable {
         String key = joinPoint.getSignature().toString();
         Object[] args = joinPoint.getArgs();
-        LogUtil.i(true, "onActivityMethodBefore: key=" + key + (args != null ? ("参数" + args.length + "个") : "无参数"));
+        LogUtil.i(true, "示例1：onActivityMethodBefore: key=" + key + (args != null ? ("参数" + args.length + "个") : "无参数"));
     }
 
     /**
@@ -47,9 +48,24 @@ public class AspectJTest {
                     break;
                 }
             }
+        LogUtil.i(true, "示例2：onTestMethodBeforeToMainActivity: 我是在方法调用之前执行的");
         Object result = joinPoint.proceed();
-        LogUtil.i(true, "onTestMethodBeforeToMainActivity: methodName=" + methodName + "\n parameterNames = " + returnArr(parameterNames) + "\n arguments=" + returnArr(arguments) + (args != null ? ("参数" + args.length + "个。") : "无参数。") + "第一个满足条件的String参数值=" + arg1 + "result=" + result);
+        LogUtil.i(true, "onTestMethodBeforeToMainActivity:  我是在方法调用之后执行的 methodName=" + methodName + "\n parameterNames = " + returnArr(parameterNames) + "\n arguments=" + returnArr(arguments) + (args != null ? ("参数" + args.length + "个。") : "无参数。") + "第一个满足条件的String参数值=" + arg1 + "result=" + result);
         return result;
+    }
+
+
+    /**
+     * 示例3：自定义Pointcuts
+     */
+    @Pointcut("execution(@top.goluck.aspectj_2017_6_11.Aop * *(..))")
+    public void AopMethod() {
+    }
+    @Before("AopMethod()")
+    public void AopMethodBefore(JoinPoint joinPoint) throws Throwable {
+        final MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        final String methodName = signature.getName();
+        LogUtil.i(true, "示例3：AopMethodBefore:  我是在方法调用之前执行的 methodName=" + methodName);
     }
 
 
