@@ -25,7 +25,7 @@
 #-renamesourcefileattribute SourceFile
 -keep class top.goluck.aspectj_2017_6_11.MainActivity{
     protected void onCreate(android.os.Bundle);
-    protected void onTest( java.lang.String,int,int);
+    protected void onTest(java.lang.String,int,int);
     protected void onResume();
     protected void onStop();
 }
