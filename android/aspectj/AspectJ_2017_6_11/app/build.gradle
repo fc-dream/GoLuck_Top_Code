@@ -82,6 +82,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE:"release"]
         }
         debug {
             buildConfigField("boolean", "isTest", "true")
@@ -93,6 +94,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE:"debug"]
         }
         debug1 {
             buildConfigField("boolean", "isTest", "true")
@@ -104,6 +106,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE:"debug1"]
         }
         debug2 {
             buildConfigField("boolean", "isTest", "true")
@@ -115,6 +118,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            manifestPlaceholders=[UMENG_CHANNEL_VALUE:"debug2"]
         }
     }
     defaultPublishConfig "release"
