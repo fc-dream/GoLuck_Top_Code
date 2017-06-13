@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LogUtil.i(false,"onCreate");
+        LogUtil.i(false,"onCreate 我的channel值 = "+BuildConfig.channel);
         onTest("我是第一个满足条件的参数",1,true);
     }
 
@@ -22,13 +22,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtil.i(false,"我是在被注入自定义Pointcuts中的方法执行的onResume");
+        if(BuildConfig.DEBUG) {
+            LogUtil.i(false, "我是DeBug模式下在被注入自定义Pointcuts中的方法执行的onResume");
+        }else{
+            LogUtil.i(false, "我是Release模式下在被注入自定义Pointcuts中的方法执行的onResume");
+        }
     }
 
     @Aop
     @Override
     protected void onStop() {
         super.onStop();
-        LogUtil.i(false,"我是在被注入自定义Pointcuts中的方法执行的onStop");
+        if(BuildConfig.isTest) {
+            LogUtil.i(false, "我是isTest=true的模式下在被注入自定义Pointcuts中的方法执行的onStop");
+        }else{
+            LogUtil.i(false, "我是isTest=false的模式下在被注入自定义Pointcuts中的方法执行的onStop");
+        }
     }
 }
