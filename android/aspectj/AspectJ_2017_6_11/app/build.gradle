@@ -11,7 +11,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_SERVER_URL", '"https://www.oschina.net/;http://192.168.1.74:9090/"')
+        buildConfigField("String", "API_SERVER_URL", '"https://www.goluck.top"')
     }
 
     // rename the apk with the version name
