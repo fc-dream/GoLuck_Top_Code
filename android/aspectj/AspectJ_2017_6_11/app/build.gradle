@@ -11,7 +11,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_SERVER_URL", '"https://www.oschina.net/;http://192.168.1.74:9090/"')
+        buildConfigField("String", "API_SERVER_URL", '"https://www.goluck.top"')
     }
 
     // rename the apk with the version name
@@ -69,6 +69,20 @@ android {
             }
         }
     }
+//    方式2 多渠道
+//    // 渠道Flavors，配置不同的渠道
+//    productFlavors {
+//        GooglePaly {}
+//        xiaomi {}
+//        umeng {}
+//        _360 {}
+//        wandoujia {}
+//        yingyongbao {}
+//    }
+//    // 批量配置渠道
+//    productFlavors.all {
+//        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//    }
 
 
     buildTypes {
