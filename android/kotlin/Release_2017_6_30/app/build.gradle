@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'//引用kt支持插件
+
+apply plugin: 'kotlin-android-extensions'//引用kt扩展支持插件
+
+//引入本地脚本
+apply from: '../config/properties-util.gradle'//引用本地gradle文件
+
+android {
+    compileSdkVersion compileSdk //编译使用的版本号
+    buildToolsVersion buildTools//buildTools版本号
+    defaultConfig {//默认配置
+        applicationId "top.goluck.release_2017_6_30"//包名
+        minSdkVersion 15//最近兼容sdk版本级别
+        targetSdkVersion 26//以指定sdk版本级别作为提供向前兼容
+        versionCode 1//版本Code
+        versionName "1.0"//版本号
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"//测试支持库
+    }
+
+    signingConfigs {//签名配置
+        Config {//配置名
+            storeFile file(propertyStoreFileStr)//签名文件
+            storePassword propertyStorePwdStr//密码
+            keyAlias propertyKeyAliasStr//别名账号
+            keyPassword propertyKeyPwdStr//别名账号密码
+            v2SigningEnabled false//是否使用v2 签名     （注意：v2签名安全性高，使用美团修改文件名区分渠道后，由于无法将修改文件签名，就会导致在android7.0及以上就无法安装。 如果不做apk修改则不会存在这样的问题，可以开启。）
+        }
+    }
+
+    buildTypes {
+        if (propertyHaveSigningConfigs)
+            debug {
+                minifyEnabled false//是否进行混淆
+                shrinkResources false //是否清理无用资源
+                zipAlignEnabled false//是否启用zipAlign压缩
+            }
+            release {
+                applicationIdSuffix ".release"//包名添加一级  top.goluck.release_2017_6_30.meizu.release
+                minifyEnabled true//是否进行混淆
+                shrinkResources true //是否清理无用资源
+                zipAlignEnabled true//是否启用zipAlign压缩
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'//使用混淆文件
+                signingConfig signingConfigs.Config//引用制定配置
+            }
+    }
+
+    flavorDimensions "default"
+
+    //设置多渠道
+    productFlavors {
+        // 把指定渠道的apk中的AndroidManifest中的channel替换指定渠道名
+        meizu {
+            buildConfigField("String", "channel", "\"meizu\"")//给配置添加一个String的类型记录渠道名
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE:"meizu"]
+            applicationIdSuffix ".meizu"//包名添加一级 top.goluck.release_2017_6_30.meizu
+            versionName "2.0"
+        }
+        huawei {
+            buildConfigField("String", "channel", "\"huawei\"")//给配置添加一个String的类型记录渠道名
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE:"huawei"]
+        }
+        baidu {
+            buildConfigField("String", "channel", "\"baidu\"")//给配置添加一个String的类型记录渠道名
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE:"baidu"]
+        }
+    }
+
+    // 批量配置渠道
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    //取消测试任务
+    tasks.whenTaskAdded { task ->
+        if (task.name.contains('AndroidTest')) {
+            task.enabled = false
+        }
+    }
+
+    // 重名APK
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Release_2017_6_30-${variant.versionName}-${variant.buildType.name}.apk".toLowerCase()
+        }
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    dependencies {
+        implementation fileTree(include: ['*.jar'], dir: 'libs')//引入所有libs下的jar
+        androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {//引入测试支持库
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"//引入kt支持库
+        testImplementation 'junit:junit:4.12'//引入单元测试支持库
+        implementation 'com.android.support.constraint:constraint-layout:1.0.2'//引入新的布局方式
+        implementation "com.android.support:appcompat-$appcompat"//引入v7向下兼容包
+    }
+}
