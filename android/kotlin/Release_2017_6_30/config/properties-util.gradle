@@ -1,0 +1,14 @@
+// config/gradleproperties
+Properties gradleProperties = new Properties()//new 一个Properties对象
+gradleProperties.load(project.rootProject.file('config/gradle.properties').newDataInputStream())//初始化config/gradle.properties下的该Properties对象
+def storeFileStr = gradleProperties.getProperty('RELEASE_STORE_FILE',null)//读取签名文件地址
+def storePwdStr = gradleProperties.getProperty('RELEASE_STORE_PASSWORD', null)//读取密码 默认读取不到为null
+def keyAliasStr = gradleProperties.getProperty('RELEASE_KEY_ALIAS', null)//别名账号 默认读取不到为null
+def keyPwdStr = gradleProperties.getProperty('RELEASE_KEY_PASSWORD', null)//别名账号密码 默认读取不到为null
+ext {
+    propertyHaveSigningConfigs = (storeFileStr != null && storePwdStr != null && keyAliasStr != null && keyPwdStr != null)
+    propertyStoreFileStr = storeFileStr
+    propertyStorePwdStr = storePwdStr
+    propertyKeyAliasStr = keyAliasStr
+    propertyKeyPwdStr = keyPwdStr
+}
