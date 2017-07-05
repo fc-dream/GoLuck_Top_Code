@@ -11,6 +11,7 @@ android {
     compileSdkVersion compileSdk //编译使用的版本号
     buildToolsVersion buildTools//buildTools版本号
     defaultConfig {//默认配置
+        resValue "string", "build_time", new Date().format("yyyy-MM-dd HH:mm:ss")//build_time记录在string里
         applicationId "top.goluck.release_2017_6_30"//包名
         minSdkVersion 15//最近兼容sdk版本级别
         targetSdkVersion 26//以指定sdk版本级别作为提供向前兼容
@@ -37,6 +38,7 @@ android {
                 zipAlignEnabled false//是否启用zipAlign压缩
             }
             release {
+                resValue "string", "build_time_release", new Date().format("yyyy-MM-dd HH:mm:ss")//build_time记录在string里
                 applicationIdSuffix ".release"//包名添加一级  top.goluck.release_2017_6_30.meizu.release
                 minifyEnabled true//是否进行混淆
                 shrinkResources true //是否清理无用资源
