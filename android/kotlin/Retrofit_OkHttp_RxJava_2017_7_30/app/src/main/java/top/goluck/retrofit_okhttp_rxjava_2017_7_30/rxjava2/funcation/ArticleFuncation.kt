@@ -19,9 +19,7 @@ class ArticleFuncation<T> : Function<Observable<Article<T>>, Observable<T>> {
                     }
                     return@Function null!!
                 })
-                .subscribeOn(Schedulers.io())
                 .filter { t -> t != null }
-                .subscribeOn(AndroidSchedulers.mainThread())
     }
 
 }
