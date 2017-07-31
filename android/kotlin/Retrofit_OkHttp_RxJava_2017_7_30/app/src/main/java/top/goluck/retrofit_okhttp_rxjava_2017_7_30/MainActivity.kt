@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                 .createService(ArticleService::class.java)
                 .getArticle("1")
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .replay(ArticleFuncation<Data>())
                 .bindToLifecycle(txt)
                 .subscribe( myObserver())
