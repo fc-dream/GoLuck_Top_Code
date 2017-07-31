@@ -4,7 +4,9 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import top.goluck.retrofit_okhttp_rxjava_2017_7_30.okhttp.OkHttpWrapper
-import android.util.SparseArray
+import com.google.gson.GsonBuilder
+
+
 
 /**
  * Created by luck on 2017/7/30.
@@ -15,11 +17,15 @@ class RetrofitManager() {
     constructor(baseUrl: String) : this() {
         var retrofitManager = retrofitManagers.get(baseUrl)
         if (retrofitManager == null) {
+            val gson = GsonBuilder()
+                    //配置你的Gson
+                    .setDateFormat("yyyy-MM-dd hh:mm:ss")
+                    .create()
             retrofitManager = RetrofitManager()
             retrofitManager.mRetrofit = Retrofit.Builder()
                     .client(OkHttpWrapper.okhttp)
                     .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
             retrofitManagers.put(baseUrl, retrofitManager)
