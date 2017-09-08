@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "D:\\git\\study\\GoLuck_Top_Code\\android\\ui\\AndroidEntityClone_2017_9_8\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "C:\\Users\\Luck\\.android\\build-cache\\419213872d4e0f4e939f5542a1d3d70a141bb29e\\output\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 229,
+                        "endColumn": 45,
+                        "endOffset": 270
+                    }
+                }
+            }
+        ]
+    }
+]
