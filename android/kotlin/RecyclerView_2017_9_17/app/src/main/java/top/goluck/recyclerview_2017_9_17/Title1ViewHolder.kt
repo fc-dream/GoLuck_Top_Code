@@ -23,7 +23,7 @@ class Title1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.visibility = View.GONE
         }else{
             itemView.visibility = View.VISIBLE
-            title_type1_txt.text = ""+data.context+position
+            title_type1_txt.text = ""+data.context +"\n编号："+position
         }
     }
 
