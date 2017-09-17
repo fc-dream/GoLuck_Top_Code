@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         view1 = Title1ViewHolder(title1)
         mMainAdpater = MainAdpater()
         mMainAdpater.setData(getData())
+        view1.bindDataandListener(0, if (mMainAdpater.getItemViewType(0) == 0) getData().get(0) else null)
         main_reyclerview.initAdapter(mMainAdpater)
         mLinearLayoutManager = main_reyclerview.layoutManager as LinearLayoutManager
         initHead()
