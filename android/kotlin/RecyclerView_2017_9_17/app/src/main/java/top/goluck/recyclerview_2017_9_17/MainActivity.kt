@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     fun initHead() {
         var h1: Float = 0f
-        var h2: Float = 0f
         var mCurrentPosition: Int = 0
         main_reyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 if (mMainAdpater.getItemViewType(mCurrentPosition + 1) == 0) {
                     val view = mLinearLayoutManager.findViewByPosition(mCurrentPosition + 1)
                     if (view != null) {
-                        if (view!!.top <= h1) {
+                        if (view.top <= h1) {
                             view1.itemView.y = -(h1 - view.top)
                         } else {
                             if (view1.itemView.y != 0f) {
