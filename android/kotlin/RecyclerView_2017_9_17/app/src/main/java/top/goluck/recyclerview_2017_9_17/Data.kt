@@ -7,4 +7,5 @@ class Data{
     var id:Int = 0
     lateinit var context:String
     var type: Int = 0
+    var position: Int = 0
 }

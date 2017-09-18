@@ -18,8 +18,13 @@ class Title1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         title_type1_img = itemView.findViewById(R.id.title_type1_img)
     }
 
-    fun bindDataandListener(position:Int,data:Data){
-        title_type1_txt.text = ""+data.context+position
+    fun bindDataandListener(position:Int,data:Data?){
+        if(data==null){
+            itemView.visibility = View.GONE
+        }else{
+            itemView.visibility = View.VISIBLE
+            title_type1_txt.text = ""+data.context +"\n编号："+position
+        }
     }
 
 }

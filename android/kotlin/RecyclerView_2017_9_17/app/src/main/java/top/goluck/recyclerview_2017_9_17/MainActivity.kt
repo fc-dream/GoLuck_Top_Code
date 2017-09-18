@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         view1 = Title1ViewHolder(title1)
         mMainAdpater = MainAdpater()
         mMainAdpater.setData(getData())
+        view1.bindDataandListener(0, if (mMainAdpater.getItemViewType(0) == 0) getData().get(0) else null)
         main_reyclerview.initAdapter(mMainAdpater)
         mLinearLayoutManager = main_reyclerview.layoutManager as LinearLayoutManager
         initHead()
@@ -35,27 +36,31 @@ class MainActivity : AppCompatActivity() {
 
     fun getData(): ArrayList<Data> {
         var datas = ArrayList<Data>()
+        var position = 0
         for (i in 0..3) {
             for (j in 0..9) {
                 var data = Data()
                 data.id = i * 9 + j
                 if (j == 0) {
                     data.type = 0
+                    data.position = position
                     data.context = "我是type=0数据，我是标题：" + (i + 1)
                 } else {
                     data.type = 1
+                    data.position = position
                     data.context = "我是type=1数据，我是第" + (i + 1) + "组的数据，内容数据：" + (j + 1)
                 }
                 datas.add(data)
             }
+            position = (i+1 )* 10
         }
         return datas
     }
 
     fun initHead() {
         var h1: Float = 0f
-        var h2: Float = 0f
-        var mCurrentPosition: Int = 0
+        var mCurrentPosition = 0
+        var mCurrentTitlePositioin = 0
         main_reyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 if (mMainAdpater.getItemViewType(mCurrentPosition + 1) == 0) {
                     val view = mLinearLayoutManager.findViewByPosition(mCurrentPosition + 1)
                     if (view != null) {
-                        if (view!!.top <= h1) {
+                        if (view.top <= h1) {
                             view1.itemView.y = -(h1 - view.top)
                         } else {
                             if (view1.itemView.y != 0f) {
@@ -81,8 +86,9 @@ class MainActivity : AppCompatActivity() {
                     if (view1.itemView.y != 0f) {
                         view1.itemView.y = 0f
                     }
-                    if (mCurrentPosition < getData().size && getData().get(mCurrentPosition).type == 0) {
-                        view1.bindDataandListener(mCurrentPosition, getData().get(mCurrentPosition))
+                    if (mCurrentPosition < getData().size && mCurrentTitlePositioin != getData()[mCurrentPosition].position) {
+                        mCurrentTitlePositioin = getData()[mCurrentPosition].position
+                        view1.bindDataandListener(mCurrentTitlePositioin, getData()[mCurrentTitlePositioin])
                     }
                 }
             }
