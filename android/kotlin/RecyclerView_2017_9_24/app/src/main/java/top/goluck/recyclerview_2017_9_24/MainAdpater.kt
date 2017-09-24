@@ -38,7 +38,9 @@ class MainAdpater : HeaderAndFooterAdapter<Data>() {
             txt.setTextColor(Color.WHITE)
             txt.gravity = Gravity.CENTER
             txt.setBackgroundColor(Color.GREEN)
-            return object : ViewHolder(txt) {}
+            var vh = object : ViewHolder(txt) {}
+            vh.setIsRecyclable(false)
+            return vh
         }
     }
 
