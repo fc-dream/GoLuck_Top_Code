@@ -1,5 +1,6 @@
 package top.goluck.recyclerview_2017_9_17
 
+import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.Gravity
@@ -13,7 +14,16 @@ import top.goluck.recyclerview_2017_9_24.R
  * Created by luck on 2017/9/17.
  */
 
-class MainAdpater : HeaderAndFooterAdapter<Data>() {
+class MainAdpater(context: Context) : HeaderAndFooterAdapter<Data>() {
+
+    private var txt: TextView = TextView(context)
+    init{
+        txt.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300)
+        txt.text = "我是自定义的不复用地View"
+        txt.setTextColor(Color.WHITE)
+        txt.gravity = Gravity.CENTER
+        txt.setBackgroundColor(Color.GREEN)
+    }
 
     override fun onNewBindViewHolder(holder: ViewHolder, position: Int, payloads: List<*>?) {
         if (holder is Title1ViewHolder) {
@@ -32,12 +42,6 @@ class MainAdpater : HeaderAndFooterAdapter<Data>() {
         } else if (viewType == 1) {
             return ContextViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.context, parent, false))
         } else {
-            var txt = TextView(parent.context)
-            txt.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,300)
-            txt.text = "我是自定义的不复用地View"
-            txt.setTextColor(Color.WHITE)
-            txt.gravity = Gravity.CENTER
-            txt.setBackgroundColor(Color.GREEN)
             var vh = object : ViewHolder(txt) {}
             vh.setIsRecyclable(false)
             return vh

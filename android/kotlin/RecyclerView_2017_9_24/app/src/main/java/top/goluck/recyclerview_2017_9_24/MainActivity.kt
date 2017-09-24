@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         main_reyclerview = findViewById(R.id.main_reyclerview)
-        mMainAdpater = MainAdpater()
+        mMainAdpater = MainAdpater(this)
         var data = getData()
 
         var itemdata = Data()
