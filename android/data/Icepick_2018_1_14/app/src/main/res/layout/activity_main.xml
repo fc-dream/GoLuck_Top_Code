@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="top.goluck.icepick_2018_1_14.MainActivity">
+
+  <TextView
+      android:id="@+id/txt_lable"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="下面的数据，是需要保存的数据，切换屏幕之后没保存的数据不能恢复"
+      android:gravity="center"
+      app:layout_constraintBottom_toBottomOf="@id/txt_num"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+      android:id="@+id/txt_num"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="0"
+      app:layout_constraintBottom_toBottomOf="@id/btn_add"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <Button
+      android:id="@+id/btn_add"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="计算加一"
+      app:layout_constraintBottom_toBottomOf="@id/btn_new"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+  <Button
+      android:id="@+id/btn_new"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="新界面"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
