@@ -1,0 +1,18 @@
+// config/gradleproperties
+Properties gradleProperties = new Properties()
+gradleProperties.load(project.rootProject.file('config/gradle.properties').newDataInputStream())
+def storeFileStr = gradleProperties.getProperty('RELEASE_STORE_FILE',null)
+def storePwdStr = gradleProperties.getProperty('RELEASE_STORE_PASSWORD', null)
+def keyAliasStr = gradleProperties.getProperty('RELEASE_KEY_ALIAS', null)
+def keyPwdStr = gradleProperties.getProperty('RELEASE_KEY_PASSWORD', null)
+gradleProperties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+def propertyisDebug = gradleProperties.getProperty('isDebug', "true")
+
+ext {
+    propertyHaveSigningConfigs = (storeFileStr != null && storePwdStr != null && keyAliasStr != null && keyPwdStr != null)
+    propertyStoreFileStr = storeFileStr
+    propertyStorePwdStr = storePwdStr
+    propertyKeyAliasStr = keyAliasStr
+    propertyKeyPwdStr = keyPwdStr
+    isDebug = propertyisDebug
+}

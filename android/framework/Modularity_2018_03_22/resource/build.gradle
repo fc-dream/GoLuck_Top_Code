@@ -1,0 +1,77 @@
+if (isDebug.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply from: '../config/properties-util.gradle'
+
+version = '1.0'
+
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    if (isDebug.toBoolean()) {
+        defaultPublishConfig "debug"
+    } else {
+        defaultPublishConfig "release"
+    }
+    sourceSets {
+        debug {
+//            if (isDebug.toBoolean()) {
+//                manifest.srcFile 'src/main/DebugAndroidManifest.xml'
+//                java.srcDirs = ['src/main/java', 'src/main/java-debug']
+//                res.srcDirs = ['src/main/res', 'src/main/res-debug']
+//                resources.srcDirs = ['src/main/resources', 'src/main/resources-debug']
+//            } else {
+//
+//            }
+        }
+        release {
+//            if (isDebug.toBoolean()) {
+//                manifest.srcFile 'src/main/DebugAndroidManifest.xml'
+//                java.srcDirs = ['src/main/java', 'src/main/java-debug']
+//                res.srcDirs = ['src/main/res', 'src/main/res-debug']
+//                resources.srcDirs = ['src/main/resources', 'src/main/resources-debug']
+//            } else {
+//
+//            }
+        }
+    }
+    buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+configurations{
+    debug
+    release
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
