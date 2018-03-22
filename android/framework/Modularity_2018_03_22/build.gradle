@@ -1,0 +1,123 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+
+    apply plugin: 'maven'
+
+    repositories {
+        google()
+        jcenter()
+        maven {
+            //本地maven仓库，路径是./projectName/.repo-tmp
+            url 'file://' + project.rootProject.rootDir + File.separator + '.repo-tmp'
+        }
+    }
+}
+
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+
+
+subprojects { subp ->
+    //发布后的group名称
+    project.group = 'com.bamboo.component'
+    subp.afterEvaluate {
+        //只能发布设置了版本号的Module
+        if (!(subp.version + '').equals('unspecified')) {
+
+            if (subp.extensions.findByName('android') != null && !getPlugins().hasPlugin("com.android.application")) {
+//                    //生成source 文件
+//                    def generateandroidSourcesJar = task("generate${variant.name.capitalize()}SourcesJar", type: Jar) {
+//                        classifier = 'sources'
+//                        from android.sourceSets.main.java.sourceFiles
+//                    }
+//                    artifacts {
+//                        archives generateandroidSourcesJar
+//                    }
+//                    //根据 release 或 debug 生成不同 source 文件
+                android.libraryVariants.all { variant ->
+                    if (variant.name.equals('release')) {
+                        def generateandroidSourcesJar = task("generate${variant.name.capitalize()}SourcesJar", type: Jar) {
+                            classifier = 'sources-release'
+                            from android.sourceSets.main.java.sourceFiles
+                        }
+                        artifacts {
+                            archives generateandroidSourcesJar
+                        }
+
+
+                    } else if (variant.buildType.name.equals('debug')) {
+                        def generateandroidSourcesJar = task("generate${variant.name.capitalize()}SourcesJar", type: Jar) {
+                            classifier = 'sources-debug'
+                            from android.sourceSets.main.java.sourceFiles
+                        }
+                        artifacts {
+                            archives generateandroidSourcesJar
+                        }
+                    }
+                }
+            } else if (subp.extensions.findByName('android') == null) {
+                //java工程
+                //生成Javadoc 文件
+                task androidJavadocs(type: Javadoc) {
+                    source = android.sourceSets.main.java.srcDirs
+                    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+                }
+                //生成source 文件
+                task androidSourcesJar(type: Jar) {
+                    classifier = 'sources'
+                    from android.sourceSets.main.java.srcDirs
+                }
+                artifacts {
+                    archives sourcesJar
+                    //archives androidJavadocsJar 因为代码中的注释不规范
+                }
+            }
+
+            uploadArchives {
+                repositories.mavenDeployer {
+                    //本地
+                    repository(url: 'file://' + project.rootProject.rootDir + File.separator + '.repo-tmp')
+                    //远程
+                    //repository(url: MAVEN_URL) {
+                    //    authentication(userName: MAVEN_ACCOUNT_NAME, password: MAVEN_ACCOUNT_PWD)
+                    //}
+                    pom.groupId = project.group
+
+//                    if (project.name.equals("resource")) {
+//                        pom.artifactId = project.name
+//                    } else {
+                    pom.artifactId = project.name + (isDebug.toBoolean() ? "-debug" : "-release")
+//                    }
+                    pom.version = project.version
+                    pom.project {
+                        licenses {
+                            license {
+                                name 'The Apache Software License, Version 2.0'
+                                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

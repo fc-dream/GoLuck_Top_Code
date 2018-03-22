@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply from: '../config/properties-util.gradle'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "modularty.top.goluck.modularity_2018_03_22"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(propertyStoreFileStr)
+            storePassword propertyStorePwdStr
+            keyAlias propertyKeyAliasStr
+            keyPassword propertyKeyPwdStr
+            v2SigningEnabled false
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+            buildConfigField("boolean", "isDebug", "true")
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField("boolean", "isDebug", "false")
+        }
+    }
+    sourceSets {
+        main {
+            if (isGDT.toBoolean()) {
+                java.srcDirs = ['src/main/java', 'src/main/java-gdt']
+            } else {
+                java.srcDirs = ['src/main/java', 'src/main/java-nogdt']
+                //集成开发模式下排除debug文件夹中的所有Java文件
+//                java {
+//                    exclude 'gdt/**'
+//                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    if (isGDT.toBoolean()) {
+        compile files('libs/GDTActionSDK.min.1.1.0.jar')
+    }
+
+    //方式1
+    //    implementation 'com.bamboo.component:resource:1.0'
+    //    implementation 'com.bamboo.component:model1:1.1.0'
+    //    implementation 'com.bamboo.component:model2:1.1.2'
+    
+    //方式2
+    //    debugCompile project(path: ':model1', configuration: "debug")
+    //    releaseCompile project(path: ':model2', configuration: "release")
+
+    //方式3
+    debugImplementation 'com.bamboo.component:resource-debug:1.0'
+    debugImplementation 'com.bamboo.component:model1-debug:1.1.0'
+    debugImplementation 'com.bamboo.component:model2-debug:1.1.2'
+    releaseImplementation 'com.bamboo.component:resource-release:1.0'
+    releaseImplementation 'com.bamboo.component:model1-release:1.1.0'
+    releaseImplementation 'com.bamboo.component:model2-release:1.1.2'
+
+}
