@@ -5,7 +5,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "modularty.top.goluck.modularity_2018_03_22"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -55,25 +55,23 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     if (isGDT.toBoolean()) {
         compile files('libs/GDTActionSDK.min.1.1.0.jar')
     }
-
     //方式1
     //    implementation 'com.bamboo.component:resource:1.0'
     //    implementation 'com.bamboo.component:model1:1.1.0'
     //    implementation 'com.bamboo.component:model2:1.1.2'
-    
     //方式2
     //    debugCompile project(path: ':model1', configuration: "debug")
     //    releaseCompile project(path: ':model2', configuration: "release")
-
     //方式3
     debugImplementation 'com.bamboo.component:resource-debug:1.0'
     debugImplementation 'com.bamboo.component:model1-debug:1.1.0'
@@ -81,5 +79,5 @@ dependencies {
     releaseImplementation 'com.bamboo.component:resource-release:1.0'
     releaseImplementation 'com.bamboo.component:model1-release:1.1.0'
     releaseImplementation 'com.bamboo.component:model2-release:1.1.2'
-
+    implementation project(':lottie')
 }
