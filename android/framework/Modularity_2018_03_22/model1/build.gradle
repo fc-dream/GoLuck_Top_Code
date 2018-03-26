@@ -63,7 +63,7 @@ android {
             buildConfigField("boolean", "isDebug", "false")
         }
     }
-    resourcePrefix "module1"
+//    resourcePrefix "module1"
     sourceSets {
         debug {
             manifest.srcFile 'src/main/debug/AndroidManifest.xml'

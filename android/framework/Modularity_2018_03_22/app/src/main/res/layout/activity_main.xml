@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="modularty.top.goluck.modularity_2018_03_09.MainActivity">
+    tools:context="modularty.top.goluck.modularity_2018_03_22.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

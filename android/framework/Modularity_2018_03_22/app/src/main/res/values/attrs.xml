@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Split">
+        <attr name="style">
+            <enum name="Style_2_2" value="1" />
+            <enum name="Style_3_2" value="2" />
+            <enum name="Style_3_3" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
