@@ -13,6 +13,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Test {
 
     @PrimaryKey
+    @ColumnInfo(name = "id")
     public int id;
     @ColumnInfo(name = "name")
     public String name;

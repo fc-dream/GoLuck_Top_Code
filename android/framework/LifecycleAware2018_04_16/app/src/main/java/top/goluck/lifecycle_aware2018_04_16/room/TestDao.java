@@ -16,7 +16,7 @@ public interface TestDao {
 
     @Query("select * from tests where name like :name")
     Flowable<List<Test>> getTests(String name);
-    @Query("select * from tests ")
+    @Query("select * from tests")
     Flowable<List<Test>> getAllTests();
 
    @Insert
