@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/beautybuy_itemview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/beautybuy_item_img1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/beautybuy_item_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/beautybuy_item_img1"
+        android:text="途虎养车工场店 （龙茗路）"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/beautybuy_item_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/beautybuy_item_img1"
+        android:layout_toRightOf="@id/beautybuy_item_img1"
+        android:text="标准洗车-5座"
+        android:singleLine="true"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/beautybuy_item_img2"
+        android:layout_width="32dp"
+        android:layout_height="13dp"
+        android:layout_below="@id/beautybuy_item_text1"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/beautybuy_item_img1"
+        android:src="@drawable/md_det_gcd" />
+
+    <RatingBar
+        android:id="@+id/beautybuy_item_rbar"
+        style="@style/StoreDetailRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/beautybuy_item_img2"
+        android:layout_below="@id/beautybuy_item_text1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/beautybuy_item_img2" />
+
+    <TextView
+        android:id="@+id/beautybuy_item_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/beautybuy_item_img2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:text="123.1km"
+        android:textColor="#ff999999"
+        android:textSize="11sp" />
+
+
+    <TextView
+        android:id="@+id/beautybuy_item_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥"
+        android:layout_alignTop="@+id/beautybuy_item_text2"
+        android:layout_toLeftOf="@+id/beautybuy_item_text5"
+        android:textColor="#ffdf3448"
+        android:textSize="7sp" />
+
+    <TextView
+        android:id="@+id/beautybuy_item_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.9"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_alignBottom="@id/beautybuy_item_text2"
+        android:textColor="#ffdf3448"
+        android:textSize="14sp" />
+
+</RelativeLayout>
