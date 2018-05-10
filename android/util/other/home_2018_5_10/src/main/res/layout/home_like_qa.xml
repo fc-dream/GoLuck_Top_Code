@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <!-- 173 * 86 -->
+    <ImageView
+        android:id="@+id/like_qa_img1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <!-- cn.TuHu.widget.CircularImage -->
+    <ImageView
+        android:id="@+id/like_qa_img2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/like_qa_img1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/like_qa_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/like_qa_img1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="12dp"
+        android:layout_toLeftOf="@+id/like_qa_text2"
+        android:layout_toRightOf="@id/like_qa_img2"
+        android:singleLine="true"
+        android:text="饭饭爱吃肉肉…"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/like_qa_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/like_qa_img1"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="15dp"
+        android:text="6天前"
+        android:textColor="#ff999999"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/like_qa_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/like_qa_img2"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:text="圆圆黑黑的轮胎竟然也有正反面？"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/like_qa_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/like_qa_text3"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:text="一说到汽车轮胎，相信每位车主都知道它的重要性。作为汽车身上唯一一个接触地面的部位，其承载着车辆和驾乘人员的全部安危，可以说是一辆车上“最关键的部件”。"
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+
+</RelativeLayout>

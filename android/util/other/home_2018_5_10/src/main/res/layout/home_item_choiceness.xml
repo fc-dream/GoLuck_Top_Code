@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/choiceness_img1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <RelativeLayout
+        android:id="@+id/choiceness_rlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choiceness_img1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+
+        <cn.tuhu.home.view.RobotoTextView
+            android:id="@+id/choiceness_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥9.9"
+            android:textColor="#ffdf3448"
+            android:textSize="14sp" />
+
+        <cn.tuhu.home.view.RobotoTextView
+            android:id="@+id/choiceness_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/choiceness_text1"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/choiceness_text1"
+            android:text="￥99.9"
+            android:textColor="#ff999999"
+            android:textSize="10sp"
+            tools:layout_editor_absoluteY="306dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/choiceness_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choiceness_rlayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="已团599单"
+        android:textColor="#ff999999"
+        android:textSize="9sp" />
+
+</RelativeLayout>

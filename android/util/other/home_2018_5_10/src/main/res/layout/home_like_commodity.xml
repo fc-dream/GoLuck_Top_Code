@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- 173 * 173 -->
+    <ImageView
+        android:id="@+id/like_commodity_img1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/like_commodity_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/like_commodity_img1"
+        android:layout_marginLeft="7dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:text="保赐利/botny 金尊镀膜蜡 B-1尊贵装车蜡"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/like_commodity_text1">
+
+        <TextView
+            android:id="@+id/like_commodity_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/like_commodity_text3"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="5dp"
+            android:text="￥"
+            android:textColor="#ffdf3448"
+            android:textSize="7sp" />
+
+        <TextView
+            android:id="@+id/like_commodity_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/like_commodity_text2"
+            android:padding="-10dp"
+            android:text="9.9"
+            android:textColor="#ffdf3448"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/like_commodity_text4"
+            android:layout_width="17dp"
+            android:layout_height="13dp"
+            android:layout_alignParentBottom="@id/like_commodity_text3"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/like_commodity_text3"
+            android:background="@drawable/shape_round3_bg1"
+            android:gravity="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="赠"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/like_commodity_text5"
+            android:layout_width="17dp"
+            android:layout_height="13dp"
+            android:layout_alignParentBottom="@id/like_commodity_text3"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/like_commodity_text4"
+            android:background="@drawable/shape_round3_bg2"
+            android:gravity="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="券"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
