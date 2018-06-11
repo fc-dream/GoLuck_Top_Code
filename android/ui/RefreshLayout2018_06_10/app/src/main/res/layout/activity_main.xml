@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     app:srlDragRate="0.7"
     app:srlEnablePreviewInEditMode="true"
-    app:srlHeaderHeight="300dp"
     app:srlHeaderMaxDragRate="1.3"
     app:srlHeaderTriggerRate="0.5">
 
@@ -15,7 +14,6 @@
         android:id="@+id/gifview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize"
         app:layout_srlBackgroundColor="@android:color/transparent"
         app:layout_srlSpinnerStyle="Translate" />
 
